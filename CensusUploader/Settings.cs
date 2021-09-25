@@ -260,7 +260,7 @@ namespace TBCPopUploader
             {
                 WebClient client = new WebClient();
                 client.Headers.Add("User-Agent", "TBCPopUploader");
-                String response = client.DownloadString("https://api.github.com/repos/christophrus/CensusUploader/releases/latest");
+                String response = client.DownloadString("https://api.github.com/repos/scarecr0w12/TBCPopUploader/releases/latest");
                 GithubJson json = JsonConvert.DeserializeObject<GithubJson>(response);
                 String currentVersion = Assembly.GetEntryAssembly().GetName().Version.ToString();
                 if (json.tag_name != "v" + currentVersion)
@@ -268,7 +268,7 @@ namespace TBCPopUploader
                     DialogResult result = MessageBox.Show(this, "There is a new version of TBCPopUploader available. Do you wanna open the download website?", "TBCPopUploader", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                     if (result == DialogResult.Yes)
                     {
-                        System.Diagnostics.Process.Start("https://github.com/christophrus/CensusUploader/releases/latest");
+                        System.Diagnostics.Process.Start("https://github.com/scarecr0w12/TBCPopUploader/releases/latest");
                     }
                 }
             } catch { }

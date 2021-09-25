@@ -159,7 +159,7 @@ namespace TBCPopUploader
                 if (second == "SavedVariables" && last == "CensusPlusTBC.lua")
                 {
                     long size = new FileInfo(e.FullPath).Length;
-                    if (size > 3145728)
+                    if (size > 9145728)
                     {
                         MessageBox.Show("Your CensusPlusTBC.lua is greater than 3 MB. Please consider using the prune/purge button within the addon.", "TBCPopUploader", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }

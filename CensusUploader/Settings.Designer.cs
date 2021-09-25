@@ -1,4 +1,4 @@
-﻿namespace CensusUploader
+﻿namespace TBCPopUploader
 {
     partial class Settings
     {

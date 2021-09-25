@@ -17,7 +17,7 @@ using System.Collections.Specialized;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
-namespace CensusUploader
+namespace TBCPopUploader
 {
     public partial class Settings : Form
     {
@@ -88,7 +88,7 @@ namespace CensusUploader
             if (settings.WoWPath == "")
             {
                 this.WindowState = FormWindowState.Normal;
-                MessageBox.Show("Could't find WoW Classic directory, please set it manually", "CensusUploader", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Could't find WoW Classic directory, please set it manually", "TBCPopUploader", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                 DialogResult result = folderBrowserDialog1.ShowDialog();
                 if (result == DialogResult.OK)
@@ -105,7 +105,7 @@ namespace CensusUploader
                     setFileSystemWatcherPath(settings.WoWPath);
                 } else
                 {
-                    MessageBox.Show("Could't find WoW Classic directory. Have you changed its location? Please set the new location manually.", "CensusUploader", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Could't find WoW Classic directory. Have you changed its location? Please set the new location manually.", "TBCPopUploader", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     this.WindowState = FormWindowState.Normal;
                 }
             }
@@ -161,7 +161,7 @@ namespace CensusUploader
                     long size = new FileInfo(e.FullPath).Length;
                     if (size > 3145728)
                     {
-                        MessageBox.Show("Your CensusPlusClassic.lua is greater than 3 MB. Please consider using the prune/purge button within the addon.", "CensusUploader", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Your CensusPlusTBC.lua is greater than 3 MB. Please consider using the prune/purge button within the addon.", "TBCPopUploader", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     uploadCensus(e.FullPath);
                 }
@@ -246,11 +246,11 @@ namespace CensusUploader
             RegistryKey registryKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
             if (settings.RunAtStartup)
             {
-                registryKey.SetValue("CensusUploader", Application.ExecutablePath);
+                registryKey.SetValue("TBCPopUploader", Application.ExecutablePath);
             }
             else
             {
-                registryKey.DeleteValue("CensusUploader", false);
+                registryKey.DeleteValue("TBCPopUploader", false);
             }
         }
 
@@ -259,13 +259,13 @@ namespace CensusUploader
             try
             {
                 WebClient client = new WebClient();
-                client.Headers.Add("User-Agent", "CensusUploader");
+                client.Headers.Add("User-Agent", "TBCPopUploader");
                 String response = client.DownloadString("https://api.github.com/repos/christophrus/CensusUploader/releases/latest");
                 GithubJson json = JsonConvert.DeserializeObject<GithubJson>(response);
                 String currentVersion = Assembly.GetEntryAssembly().GetName().Version.ToString();
                 if (json.tag_name != "v" + currentVersion)
                 {
-                    DialogResult result = MessageBox.Show(this, "There is a new version of CensusUploader available. Do you wanna open the download website?", "CensusUploader", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    DialogResult result = MessageBox.Show(this, "There is a new version of TBCPopUploader available. Do you wanna open the download website?", "TBCPopUploader", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                     if (result == DialogResult.Yes)
                     {
                         System.Diagnostics.Process.Start("https://github.com/christophrus/CensusUploader/releases/latest");
@@ -324,7 +324,7 @@ namespace CensusUploader
             {
                 if (json.updateDialog != "false")
                 {
-                    DialogResult result = MessageBox.Show(this, "Your CensusPlusClassic addon is outdated. Do you wanna open the download website with the latest version " + json.updateDialog + "?", "CensusUploader", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    DialogResult result = MessageBox.Show(this, "Your CensusPlusClassic addon is outdated. Do you wanna open the download website with the latest version " + json.updateDialog + "?", "TBCPopUploader", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                     if (result == DialogResult.Yes)
                     {
                         System.Diagnostics.Process.Start("https://github.com/christophrus/CensusPlusClassic/releases/latest");
@@ -341,7 +341,7 @@ namespace CensusUploader
                 saveSettings();
             } else
             {
-                MessageBox.Show(this, "Upload Error: " + json.error, "CensusUploader", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(this, "Upload Error: " + json.error, "TBCPopUploader", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             
         }

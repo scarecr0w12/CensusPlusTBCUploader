@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2019
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CensusUploader", "CensusUploader\CensusUploader.csproj", "{8D7704C9-F2CB-4FA9-B537-518E5AFBC370}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TBCPopUploader", "CensusUploader\TBCPopUploader.csproj", "{8D7704C9-F2CB-4FA9-B537-518E5AFBC370}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

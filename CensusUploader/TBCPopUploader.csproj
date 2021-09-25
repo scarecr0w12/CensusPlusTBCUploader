@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{8D7704C9-F2CB-4FA9-B537-518E5AFBC370}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>CensusUploader</RootNamespace>
-    <AssemblyName>CensusUploader</AssemblyName>
+    <RootNamespace>TBCPopUploader</RootNamespace>
+    <AssemblyName>TBCPopUploader</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>CensusUploader.ico</ApplicationIcon>
+    <ApplicationIcon>TBCPopUploader.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -87,7 +87,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CensusUploader.ico">
+    <Content Include="TBCPopUploader.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -156,7 +156,7 @@ namespace TBCPopUploader
                 var split = e.Name.Split('\\');
                 var second = split[1];
                 var last = split[split.Length - 1];
-                if (second == "SavedVariables" && last == "CensusPlusClassic.lua")
+                if (second == "SavedVariables" && last == "CensusPlusTBC.lua")
                 {
                     long size = new FileInfo(e.FullPath).Length;
                     if (size > 3145728)
@@ -282,7 +282,7 @@ namespace TBCPopUploader
         /// <summary>
         /// Checks if upload is due for specific file.
         /// </summary>
-        /// <param name="filePath">Path to "CensusPlusClassic.lua" file.</param>
+        /// <param name="filePath">Path to "CensusPlusTBC.lua" file.</param>
         /// <returns>True if upload is due, else false.</returns>
         private bool uploadIsDue(string filePath)
         {
@@ -293,7 +293,7 @@ namespace TBCPopUploader
         /// <summary>
         /// Checks if the CensusPlus lua file contains any data.
         /// </summary>
-        /// <param name="filePath">Path to "CensusPlusClassic.lua" file.</param>
+        /// <param name="filePath">Path to "CensusPlusTBC.lua" file.</param>
         /// <returns>True, if file contains census data, else false.</returns>
         private bool containsCensusData(string filePath)
         {
@@ -309,7 +309,7 @@ namespace TBCPopUploader
                 lastUpload[filePath] = DateTime.Now;
                 stats["lastUpload"] = DateTime.Now;
                 WebClient client = new WebClient();
-                Uri url = new Uri("https://wowclassicpopulation.com/api/upload");
+                Uri url = new Uri("https://wowclassicpop.com/api/upload");
 
                 client.UploadFileCompleted += new UploadFileCompletedEventHandler(UploadFileCallback);
                 client.UploadFileAsync(url, filePath);
@@ -324,10 +324,10 @@ namespace TBCPopUploader
             {
                 if (json.updateDialog != "false")
                 {
-                    DialogResult result = MessageBox.Show(this, "Your CensusPlusClassic addon is outdated. Do you wanna open the download website with the latest version " + json.updateDialog + "?", "TBCPopUploader", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    DialogResult result = MessageBox.Show(this, "Your CensusPlusTBC addon is outdated. Do you wanna open the download website with the latest version " + json.updateDialog + "?", "TBCPopUploader", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                     if (result == DialogResult.Yes)
                     {
-                        System.Diagnostics.Process.Start("https://github.com/christophrus/CensusPlusClassic/releases/latest");
+                        System.Diagnostics.Process.Start("https://github.com/scarecr0w12/TBCPopUploader/releases/latest");
                     }
 
                 }

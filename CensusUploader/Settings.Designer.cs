@@ -1,4 +1,4 @@
-﻿namespace TBCPopUploader
+﻿namespace WowPopUploader
 {
     partial class Settings
     {
@@ -69,7 +69,7 @@
             // 
             this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "TBCPopUploader";
+            this.notifyIcon1.Text = "WowPopUploader";
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.DoubleClick += new System.EventHandler(this.notifyIcon1_DoubleClick);
             // 
@@ -98,7 +98,7 @@
             // fileSystemWatcher1
             // 
             this.fileSystemWatcher1.EnableRaisingEvents = true;
-            this.fileSystemWatcher1.Filter = "CensusPlusTBC.lua";
+            this.fileSystemWatcher1.Filter = "CensusPlusWotlk.lua";
             this.fileSystemWatcher1.IncludeSubdirectories = true;
             this.fileSystemWatcher1.SynchronizingObject = this;
             this.fileSystemWatcher1.Renamed += new System.IO.RenamedEventHandler(this.fileSystemWatcher1_Renamed);

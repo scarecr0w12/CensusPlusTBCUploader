@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Allgemeine Informationen über eine Assembly werden über die folgenden
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
 // die einer Assembly zugeordnet sind.
-[assembly: AssemblyTitle("TBCPopUploader")]
-[assembly: AssemblyDescription("Helper upload tool for CensusPlusTBC World of Warcraft TBC Classic addon")]
+[assembly: AssemblyTitle("WowPopUploader")]
+[assembly: AssemblyDescription("Helper upload tool for CensusPlusWotlk World of Warcraft Wotlk Classic addon")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("TBCPopUploader")]
+[assembly: AssemblyProduct("WowPopUploader")]
 [assembly: AssemblyCopyright("GPL v3")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

@@ -17,7 +17,7 @@ using System.Collections.Specialized;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
-namespace TBCPopUploader
+namespace WowPopUploader
 {
     public partial class Settings : Form
     {
@@ -88,7 +88,7 @@ namespace TBCPopUploader
             if (settings.WoWPath == "")
             {
                 this.WindowState = FormWindowState.Normal;
-                MessageBox.Show("Could't find WoW Classic directory, please set it manually", "TBCPopUploader", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Could't find WoW Classic directory, please set it manually", "WowPopUploader", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                 DialogResult result = folderBrowserDialog1.ShowDialog();
                 if (result == DialogResult.OK)
@@ -105,7 +105,7 @@ namespace TBCPopUploader
                     setFileSystemWatcherPath(settings.WoWPath);
                 } else
                 {
-                    MessageBox.Show("Could't find WoW Classic directory. Have you changed its location? Please set the new location manually.", "TBCPopUploader", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Could't find WoW Classic directory. Have you changed its location? Please set the new location manually.", "WowPopUploader", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     this.WindowState = FormWindowState.Normal;
                 }
             }
@@ -156,12 +156,12 @@ namespace TBCPopUploader
                 var split = e.Name.Split('\\');
                 var second = split[1];
                 var last = split[split.Length - 1];
-                if (second == "SavedVariables" && last == "CensusPlusTBC.lua")
+                if (second == "SavedVariables" && last == "CensusPlusWotlk.lua")
                 {
                     long size = new FileInfo(e.FullPath).Length;
                     if (size > 9145728)
                     {
-                        MessageBox.Show("Your CensusPlusTBC.lua is greater than 3 MB. Please consider using the prune/purge button within the addon.", "TBCPopUploader", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Your CensusPlusWotlk.lua is greater than 3 MB. Please consider using the prune/purge button within the addon.", "WowPopUploader", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     uploadCensus(e.FullPath);
                 }
@@ -246,11 +246,11 @@ namespace TBCPopUploader
             RegistryKey registryKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
             if (settings.RunAtStartup)
             {
-                registryKey.SetValue("TBCPopUploader", Application.ExecutablePath);
+                registryKey.SetValue("WowPopUploader", Application.ExecutablePath);
             }
             else
             {
-                registryKey.DeleteValue("TBCPopUploader", false);
+                registryKey.DeleteValue("WowPopUploader", false);
             }
         }
 
@@ -259,16 +259,16 @@ namespace TBCPopUploader
             try
             {
                 WebClient client = new WebClient();
-                client.Headers.Add("User-Agent", "TBCPopUploader");
-                String response = client.DownloadString("https://api.github.com/repos/scarecr0w12/TBCPopUploader/releases/latest");
+                client.Headers.Add("User-Agent", "WowPopUploader");
+                String response = client.DownloadString("https://api.github.com/repos/scarecr0w12/WowPopUploader/releases/latest");
                 GithubJson json = JsonConvert.DeserializeObject<GithubJson>(response);
                 String currentVersion = Assembly.GetEntryAssembly().GetName().Version.ToString();
                 if (json.tag_name != "v" + currentVersion)
                 {
-                    DialogResult result = MessageBox.Show(this, "There is a new version of TBCPopUploader available. Do you wanna open the download website?", "TBCPopUploader", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    DialogResult result = MessageBox.Show(this, "There is a new version of WowPopUploader available. Do you wanna open the download website?", "WowPopUploader", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                     if (result == DialogResult.Yes)
                     {
-                        System.Diagnostics.Process.Start("https://github.com/scarecr0w12/TBCPopUploader/releases/latest");
+                        System.Diagnostics.Process.Start("https://github.com/scarecr0w12/WowPopUploader/releases/latest");
                     }
                 }
             } catch { }
@@ -282,7 +282,7 @@ namespace TBCPopUploader
         /// <summary>
         /// Checks if upload is due for specific file.
         /// </summary>
-        /// <param name="filePath">Path to "CensusPlusTBC.lua" file.</param>
+        /// <param name="filePath">Path to "CensusPlusWotlk.lua" file.</param>
         /// <returns>True if upload is due, else false.</returns>
         private bool uploadIsDue(string filePath)
         {
@@ -293,7 +293,7 @@ namespace TBCPopUploader
         /// <summary>
         /// Checks if the CensusPlus lua file contains any data.
         /// </summary>
-        /// <param name="filePath">Path to "CensusPlusTBC.lua" file.</param>
+        /// <param name="filePath">Path to "CensusPlusWotlk.lua" file.</param>
         /// <returns>True, if file contains census data, else false.</returns>
         private bool containsCensusData(string filePath)
         {
@@ -324,10 +324,10 @@ namespace TBCPopUploader
             {
                 if (json.updateDialog != "false")
                 {
-                    DialogResult result = MessageBox.Show(this, "Your CensusPlusTBC addon is outdated. Do you wanna open the download website with the latest version " + json.updateDialog + "?", "TBCPopUploader", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    DialogResult result = MessageBox.Show(this, "Your CensusPlusWotlk addon is outdated. Do you wanna open the download website with the latest version " + json.updateDialog + "?", "WowPopUploader", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                     if (result == DialogResult.Yes)
                     {
-                        System.Diagnostics.Process.Start("https://github.com/scarecr0w12/TBCPopUploader/releases/latest");
+                        System.Diagnostics.Process.Start("https://github.com/scarecr0w12/WowPopUploader/releases/latest");
                     }
 
                 }
@@ -341,7 +341,7 @@ namespace TBCPopUploader
                 saveSettings();
             } else
             {
-                MessageBox.Show(this, "Upload Error: " + json.error, "TBCPopUploader", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(this, "Upload Error: " + json.error, "WowPopUploader", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             
         }
